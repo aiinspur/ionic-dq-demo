@@ -14,6 +14,7 @@ This is the official Ionic demo app, showcasing a variety of Ionic Framework com
  - [File Structure of App](#file-structure-of-app)
 
 
+
 ## Getting Started
 
 * [Download the installer](https://nodejs.org/) for Node.js 6 or greater.
