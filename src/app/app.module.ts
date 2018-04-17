@@ -23,11 +23,21 @@ import { SignupPage } from '../pages/signup/signup';
 import { SpeakerDetailPage } from '../pages/speaker-detail/speaker-detail';
 import { SpeakerListPage } from '../pages/speaker-list/speaker-list';
 import { TabsPage } from '../pages/tabs-page/tabs-page';
+import { SettingPage } from '../pages/setting/setting';
 import { TutorialPage } from '../pages/tutorial/tutorial';
 import { SupportPage } from '../pages/support/support';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
 
 import { ConferenceData } from '../providers/conference-data';
 import { UserData } from '../providers/user-data';
+import { DqData } from '../providers/dq-data';
+import { AuthInterceptor } from '../interceptor/auth-interceptor';
+import { AuthService } from '../interceptor/auth-service';
+import { toast} from '../utils/toast';
+
+
+
 
 
 @NgModule({
@@ -46,11 +56,13 @@ import { UserData } from '../providers/user-data';
     SpeakerListPage,
     TabsPage,
     TutorialPage,
+    SettingPage,
     SupportPage
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     IonicModule.forRoot(ConferenceApp, {}, {
       links: [
         { component: TabsPage, name: 'TabsPage', segment: 'tabs-page' },
@@ -85,14 +97,19 @@ import { UserData } from '../providers/user-data';
     SpeakerDetailPage,
     SpeakerListPage,
     TabsPage,
+    SettingPage,
     TutorialPage,
     SupportPage
   ],
   providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     ConferenceData,
     UserData,
+    DqData,
     InAppBrowser,
+    AuthService,
+    toast,
     SplashScreen
   ]
 })
