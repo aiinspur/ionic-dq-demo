@@ -34,7 +34,7 @@ import { UserData } from '../providers/user-data';
 import { DqData } from '../providers/dq-data';
 import { AuthInterceptor } from '../interceptor/auth-interceptor';
 import { AuthService } from '../interceptor/auth-service';
-import { toast} from '../utils/toast';
+import { Toast} from '../utils/toast';
 
 
 
@@ -109,7 +109,7 @@ import { toast} from '../utils/toast';
     DqData,
     InAppBrowser,
     AuthService,
-    toast,
+    Toast,
     SplashScreen
   ]
 })

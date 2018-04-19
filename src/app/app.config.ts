@@ -12,5 +12,7 @@ export class AppConfig {
 
     public static user_regist_api = AppConfig.api+"m/regist";
 
+    public static user_login_api = AppConfig.api+"m/login";
+
 
 }

@@ -10,7 +10,9 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/observable/of';
 // import { user } from '../pages/signup/user';
-import { AppConfig } from '../app/app.config';
+// import { AppConfig } from '../app/app.config';
+// import { User } from '../interfaces/user';
+import { User } from '../interfaces/user-model';
 
 
 @Injectable()
@@ -25,7 +27,7 @@ export class DqData {
     //public http: Http,
     public storage: Storage,
     private http: HttpClient
-  ) {}
+  ) { }
 
   load(): any {
     if (this.data) {
@@ -41,12 +43,12 @@ export class DqData {
     return this.data;
   }
 
-  post(url,body): any {
+  post(url, body): any {
     if (this.data) {
       return Observable.of(this.data);
     } else {
-      console.log("post body:"+JSON.stringify(body));
-      return this.http.post(url,JSON.stringify(body))
+      console.log("post body:" + JSON.stringify(body));
+      return this.http.post(url, JSON.stringify(body))
         .map(this.processDataPost, this);
     }
   }
@@ -72,48 +74,23 @@ export class DqData {
     }
   };
 
-  login(username: string): void {
-    this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
-    this.events.publish('user:login');
-  };
 
-  //用户注册
-  signup2(user) {
-    // const headers = new HttpHeaders().set("Content-Type", "application/json");
-    
-    return this.post(AppConfig.user_regist_api,user).map((data: any) => {
-      console.log("signup2:"+data);
-      return data;
-    });
-    // this.storage.set(this.HAS_LOGGED_IN, true);
-    // this.setUsername(userinfo.username);
-    // this.events.publish('user:signup');
-  };
-
-  // private handleError(error: Response) {
-  //   return Observable.throw(error.json()|| 'Serve Error');
-  // }
-
-  //用户注册
-  signup(username: string): void {
-    this.storage.set(this.HAS_LOGGED_IN, true);
-    this.setUsername(username);
-    this.events.publish('user:signup');
-  };
-
+  //退出登录
   logout(): void {
     this.storage.remove(this.HAS_LOGGED_IN);
-    this.storage.remove('username');
+    this.storage.remove('user');
     this.events.publish('user:logout');
   };
 
-  setUsername(username: string): void {
-    this.storage.set('username', username);
+
+
+  //缓存用户信息
+  storeUser(user: User): void {
+    this.storage.set('user', user);
   };
 
-  getUsername(): Promise<string> {
-    return this.storage.get('username').then((value) => {
+  getUser(): Promise<any> {
+    return this.storage.get('user').then((value) => {
       return value;
     });
   };
