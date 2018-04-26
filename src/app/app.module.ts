@@ -35,6 +35,10 @@ import { DqData } from '../providers/dq-data';
 import { AuthInterceptor } from '../interceptor/auth-interceptor';
 import { AuthService } from '../interceptor/auth-service';
 import { Toast} from '../utils/toast';
+import { PasswordPage } from '../pages/setting/password/password';
+import { HomePage } from '../pages/home/home';
+import { ArticlesDetailPage } from '../pages/articles-detail/articles-detail';
+import { SafeHtmlPipe } from '../pipe/SafeHtmlPipe';
 
 
 
@@ -57,7 +61,11 @@ import { Toast} from '../utils/toast';
     TabsPage,
     TutorialPage,
     SettingPage,
-    SupportPage
+    SupportPage,
+    PasswordPage,
+    HomePage,
+    ArticlesDetailPage,
+    SafeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -99,7 +107,10 @@ import { Toast} from '../utils/toast';
     TabsPage,
     SettingPage,
     TutorialPage,
-    SupportPage
+    SupportPage,
+    PasswordPage,
+    HomePage,
+    ArticlesDetailPage
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

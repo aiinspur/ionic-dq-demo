@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title *ngIf="article">{{article.title}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="article">
+    <h1>{{article.title | slice:0:20}}</h1>
+    <h6>{{article.createTime | date:"MM-dd h:mm"}}</h6>
+    <div [innerHTML]="content |safeHTML"></div>
+  </div>
+</ion-content>

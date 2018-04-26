@@ -13,6 +13,7 @@ import 'rxjs/add/observable/of';
 // import { AppConfig } from '../app/app.config';
 // import { User } from '../interfaces/user';
 import { User } from '../interfaces/user-model';
+import { AppConfig } from '../app/app.config';
 
 
 @Injectable()
@@ -82,13 +83,19 @@ export class DqData {
     this.events.publish('user:logout');
   };
 
-
+  //查询用户信息
+  queryUser(uid): Promise<any> {
+    return this.http.get(AppConfig.user_info_api + "?id=" + uid).toPromise().then((result: any) => {
+      return result.data;
+    });
+  }
 
   //缓存用户信息
   storeUser(user: User): void {
     this.storage.set('user', user);
   };
 
+  //从缓存获得用户信息
   getUser(): Promise<any> {
     return this.storage.get('user').then((value) => {
       return value;

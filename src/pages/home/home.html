@@ -1,0 +1,92 @@
+<ion-header>
+  <ion-navbar no-border-bottom>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-segment [(ngModel)]="segment" (ionChange)="updateSchedule()">
+      <ion-segment-button value="all">
+        资讯
+      </ion-segment-button>
+      <ion-segment-button value="favorites">
+        推荐
+      </ion-segment-button>
+    </ion-segment>
+
+    <!-- <ion-buttons end>
+      <button ion-button icon-only (click)="presentFilter()">
+        <ion-icon ios="ios-options-outline" md="md-options"></ion-icon>
+      </button>
+    </ion-buttons> -->
+  </ion-navbar>
+
+  <!-- <ion-toolbar no-border-top>
+    <ion-searchbar color="primary"
+                   [(ngModel)]="queryText"
+                   (ionInput)="updateSchedule()"
+                   placeholder="Search">
+    </ion-searchbar>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+
+  <!-- <ion-list #scheduleList [hidden]="shownSessions === 0"> -->
+
+    <ion-list #scheduleList>
+      
+    <ion-slides pager loop="true" autoplay="2000" *ngIf="carouseLen > 0">
+      <ion-slide *ngFor="let carouse of carouselList">
+        <img data-src="{{resourcesApi+carouse.mainPic}}">
+      </ion-slide>
+    </ion-slides>
+
+    <ion-list>
+      <ion-item *ngFor="let article of articlesList" (click)="inpage(article)">
+        <ion-thumbnail item-start>
+          <img src="{{resourcesApi}}{{article.thumbnail}}">
+        </ion-thumbnail>
+        <h5>{{article.title | slice:0:40 }}</h5>
+        <div>
+          <span>2018-09-09</span>
+          <ion-icon name="eye"></ion-icon> 10K
+          <ion-icon ios="ios-chatboxes" md="md-chatboxes" ></ion-icon> 20K</div>
+      </ion-item>
+
+
+
+    </ion-list>
+
+  </ion-list>
+
+  <!-- <ion-list-header [hidden]="shownSessions > 0">
+    No Sessions Found
+  </ion-list-header> -->
+
+  <ion-fab bottom right #fab>
+    <button ion-fab>
+      <ion-icon name="share"></ion-icon>
+    </button>
+    <ion-fab-list side="top">
+      <button ion-fab color="vimeo" (click)="openSocial('Vimeo', fab)">
+        <ion-icon name="logo-vimeo"></ion-icon>
+      </button>
+      <button ion-fab color="google" (click)="openSocial('Google+', fab)">
+        <ion-icon name="logo-googleplus"></ion-icon>
+      </button>
+      <button ion-fab color="twitter" (click)="openSocial('Twitter', fab)">
+        <ion-icon name="logo-twitter"></ion-icon>
+      </button>
+      <button ion-fab color="facebook" (click)="openSocial('Facebook', fab)">
+        <ion-icon name="logo-facebook"></ion-icon>
+      </button>
+    </ion-fab-list>
+  </ion-fab>
+
+
+</ion-content>
