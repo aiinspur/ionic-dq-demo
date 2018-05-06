@@ -39,10 +39,13 @@ import { PasswordPage } from '../pages/setting/password/password';
 import { HomePage } from '../pages/home/home';
 import { ArticlesDetailPage } from '../pages/articles-detail/articles-detail';
 import { SafeHtmlPipe } from '../pipe/SafeHtmlPipe';
+import { PostListPage } from '../pages/post-list/post-list';
+import { PostDetailPage } from '../pages/post-detail/post-detail';
+import { ElasticDirective } from '../directives/elastic/elastic';
 
 
 
-
+import { Camera } from '@ionic-native/camera';
 
 @NgModule({
   declarations: [
@@ -65,7 +68,10 @@ import { SafeHtmlPipe } from '../pipe/SafeHtmlPipe';
     PasswordPage,
     HomePage,
     ArticlesDetailPage,
-    SafeHtmlPipe
+    SafeHtmlPipe,
+    PostListPage,
+    PostDetailPage,
+    ElasticDirective
   ],
   imports: [
     BrowserModule,
@@ -110,7 +116,9 @@ import { SafeHtmlPipe } from '../pipe/SafeHtmlPipe';
     SupportPage,
     PasswordPage,
     HomePage,
-    ArticlesDetailPage
+    ArticlesDetailPage,
+    PostListPage,
+    PostDetailPage
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -121,7 +129,11 @@ import { SafeHtmlPipe } from '../pipe/SafeHtmlPipe';
     InAppBrowser,
     AuthService,
     Toast,
-    SplashScreen
+    SplashScreen,
+    Camera
+  ],
+  exports: [
+    ElasticDirective
   ]
 })
 export class AppModule { }

@@ -15,7 +15,7 @@ export class ArticlesDetailPage {
   content: any;
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public http: HttpClient,
     public sanitizer: DomSanitizer) {
   }
@@ -25,12 +25,16 @@ export class ArticlesDetailPage {
   }
 
   getDetails() {
-    this.http.get(AppConfig.article_details_api + "?id=" + this.navParams.data.articleId).subscribe((result: any) => {
-      if (result.code == AppConfig.success) {
-        this.article = result.data;
-        this.getContents(this.article.content);
-      }
-    });
+    this.http.get(AppConfig.article_details_api, {
+      params: { id: this.navParams.data.articleId, userId: '100' }
+    })
+      .subscribe((result: any) => {
+        console.log(result);
+        if (result.code == AppConfig.success) {
+          this.article = result.data;
+          this.getContents(this.article.content);
+        }
+      });
   }
 
   getContents(contentFile) {

@@ -27,13 +27,13 @@ export class HomePage {
   // @ViewChild('scheduleList') gets a reference to the list
   // with the variable #scheduleList, `read: List` tells it to return
   // the List and not a reference to the element
-  @ViewChild('scheduleList', { read: List }) scheduleList: List;
+  @ViewChild('newsList', { read: List }) newsList: List;
 
   @ViewChild(Slides) slides: Slides;
 
   dayIndex = 0;
   queryText = '';
-  segment = 'all';
+  segment = 'news';
   excludeTracks: any = [];
   shownSessions: any = [];
   groups: any = [];
@@ -62,7 +62,7 @@ export class HomePage {
     //this.updateSchedule();
 
     this.getCarousel();
-    this.getArticles();
+    this.getArticles("");
   }
 
   //获取轮播图
@@ -78,17 +78,18 @@ export class HomePage {
         console.log("POST call in error", response);
       },
       () => {
-        console.log("获取轮播图end.");
+        //console.log("获取轮播图end.");
       });
   }
 
   //获取文章列表
-  getArticles() {
-    this.http.get(AppConfig.article_page_api).subscribe(
+  getArticles(q?: string) {
+
+    this.http.get(AppConfig.article_page_api+q).subscribe(
       (result: any) => {
-        console.log('获取文章列表 result:', result);
         if (result.code == AppConfig.success) {
           this.articlesList = result.data.list;
+          this.shownSessions = 1;
         }
       },
       response => {
@@ -105,9 +106,23 @@ export class HomePage {
     this.navCtrl.push(ArticlesDetailPage, { articleId: article.id });
   }
 
+  updateNews(){
+    this.newsList && this.newsList.closeSlidingItems();
+    let q = "";
+    if(this.segment==="news"){
+      q = "";
+    }
+    if(this.segment==="recommend"){
+      q = "?top=1";
+    }
+
+    this.getArticles(q);
+
+  }
+
   updateSchedule() {
     // Close any open sliding items when the schedule updates
-    this.scheduleList && this.scheduleList.closeSlidingItems();
+    //this.scheduleList && this.scheduleList.closeSlidingItems();
 
     this.confData.getTimeline(this.dayIndex, this.queryText, this.excludeTracks, this.segment).subscribe((data: any) => {
       this.shownSessions = data.shownSessions;
