@@ -43,9 +43,13 @@ import { PostListPage } from '../pages/post-list/post-list';
 import { PostDetailPage } from '../pages/post-detail/post-detail';
 import { ElasticDirective } from '../directives/elastic/elastic';
 
+import { FileTransfer } from '@ionic-native/file-transfer';
+
+
 
 
 import { Camera } from '@ionic-native/camera';
+import { MatchPage } from '../pages/match/match';
 
 @NgModule({
   declarations: [
@@ -71,7 +75,8 @@ import { Camera } from '@ionic-native/camera';
     SafeHtmlPipe,
     PostListPage,
     PostDetailPage,
-    ElasticDirective
+    ElasticDirective,
+    MatchPage
   ],
   imports: [
     BrowserModule,
@@ -118,7 +123,8 @@ import { Camera } from '@ionic-native/camera';
     HomePage,
     ArticlesDetailPage,
     PostListPage,
-    PostDetailPage
+    PostDetailPage,
+    MatchPage
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
@@ -130,7 +136,8 @@ import { Camera } from '@ionic-native/camera';
     AuthService,
     Toast,
     SplashScreen,
-    Camera
+    Camera,
+    FileTransfer
   ],
   exports: [
     ElasticDirective

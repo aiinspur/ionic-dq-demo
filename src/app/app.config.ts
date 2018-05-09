@@ -1,34 +1,33 @@
 
-// 这是全局通用的配置参数，比如调用后台接口统一的域名地址
+// 这是全局通用的配置参数
 export class AppConfig {
 
-    public static tenantId = "120";
-
-    public static success = "0";
+    //通用
+    public static tenantId = "120";     //租户id
+    public static success = "0";        //接口成功标识
 
     //服务器地址
     public static api = 'http://localhost:8089/api/';
-    //资源服务器地址
-    public static resource_api = 'http://localhost/files/';
+    public static resource_api = 'http://localhost/files/';     //资源服务器地址
 
+    //附件上传
+    public static attachment_upload_one = 'http://localhost:8089/api/attachment/upload/one';
 
-    public static user_regist_api = AppConfig.api+"m/regist";
+    //用户
+    public static user_regist_api = AppConfig.api + "m/regist";   //注册
+    public static user_login_api = AppConfig.api + "m/login";     //登录
+    public static user_info_api = AppConfig.api + "m/user";       //查询用户信息
+    public static user_saveorupdate_api = AppConfig.api + "m/saveOrUpdate";   //新建/修改用户细腻
+    public static user_change_pwd_api = AppConfig.api + "m/changePwd";    //修改密码
 
-    public static user_login_api = AppConfig.api+"m/login";
+    //文章
+    public static article_page_api = AppConfig.api + "articles/pagelist";
+    public static article_list_api = AppConfig.api + "articles/list";
+    public static article_details_api = AppConfig.api + "articles/details";
 
-    public static user_info_api = AppConfig.api+"m/user";
-
-    public static user_saveorupdate_api = AppConfig.api+"m/saveOrUpdate";
-
-    //修改密码
-    public static user_change_pwd_api = AppConfig.api+"m/changePwd";
-
-    //文章列表
-    public static article_page_api = AppConfig.api+"articles/pagelist";
-
-    public static article_list_api = AppConfig.api+"articles/list";
-
-    public static article_details_api = AppConfig.api+"articles/details";
+    //帖子
+    public static post_page_api = AppConfig.api + "post/pagelist";      //分页列表
+    public static post_create_api = AppConfig.api + "post";         //创建post
 
 
 

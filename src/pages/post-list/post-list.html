@@ -14,11 +14,11 @@
 
 <ion-content>
     <ion-toolbar no-border-top no-border-bottom>
-        <ion-segment [(ngModel)]="postCategory" no-border-bottom>
+        <ion-segment [(ngModel)]="postCategory" no-border-bottom (ionChange)="updatePost()">
             <ion-segment-button value="hot">
                 热门
             </ion-segment-button>
-            <ion-segment-button value="latest" checked>
+            <ion-segment-button value="latest">
                 最新
             </ion-segment-button>
         </ion-segment>

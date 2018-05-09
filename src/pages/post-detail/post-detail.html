@@ -10,7 +10,7 @@
     <ion-title>post-detail</ion-title>
 
     <ion-buttons end>
-      <button ion-button  (click)="openModal()">
+      <button ion-button  (click)="createPost()">
         发表
       </button>
     </ion-buttons>
@@ -21,7 +21,7 @@
 
 <ion-content padding>
   <ion-item text-wrap style="height: 50%;">
-    <ion-textarea elastic placeholder="Enter a description"></ion-textarea>
+    <ion-textarea [(ngModel)]="postText" elastic placeholder="Enter a description"></ion-textarea>
     
 </ion-item>
 
@@ -29,7 +29,7 @@
   <img src="{{pic}}">
 </ion-thumbnail>
 
-<button ion-button large float-left (click)="addPicDemo()" style="width: 100px;height: 100px;">
+<button ion-button large float-left (click)="addPic()" style="width: 100px;height: 100px;">
   选择图片
 </button> 
 
