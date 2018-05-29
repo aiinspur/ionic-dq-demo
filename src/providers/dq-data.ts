@@ -95,6 +95,21 @@ export class DqData {
     this.storage.set('user', user);
   };
 
+  //缓存token信息
+  storeToken(token: string): void {
+    this.storage.set('token', token);
+  };
+
+
+  //从缓存获得token信息
+  getToken(): Promise<any> {
+    return this.storage.get('token').then((value) => {
+      return value;
+    });
+  };
+
+  
+
   //从缓存获得用户信息
   getUser(): Promise<any> {
     return this.storage.get('user').then((value) => {

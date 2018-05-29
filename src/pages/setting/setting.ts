@@ -54,8 +54,6 @@ export class SettingPage {
     ngAfterViewInit() {
         console.log('ngAfterViewInit');
         this.needLogin();
-        console.log(this.loginName);
-        console.log(this.items);
     }
 
     needLogin() {
