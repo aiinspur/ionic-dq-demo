@@ -6,12 +6,12 @@ export class AppConfig {
     public static tenantId = "120";     //租户id
     public static success = "0";        //接口成功标识
 
-    //服务器地址
-    public static api = 'http://localhost:8089/api/';
-    public static resource_api = 'http://localhost/files/';     //资源服务器地址
+    //服务器地址 http://localhost:8089/api/
+    public static api = 'http://47.104.13.7:8089/api/';
+    public static resource_api = 'http://47.104.13.7/files/';     //资源服务器地址
 
     //附件上传
-    public static attachment_upload_one = 'http://localhost:8089/api/attachment/upload/one';
+    public static attachment_upload_one = 'http://47.104.13.7:8089/api/attachment/upload/one';
 
     //用户
     public static user_regist_api = AppConfig.api + "m/regist";   //注册
